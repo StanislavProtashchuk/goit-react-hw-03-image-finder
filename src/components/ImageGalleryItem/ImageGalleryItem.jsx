@@ -1,8 +1,10 @@
 import { Component } from 'react';
+import axios from 'axios';
 
 export default class ImageGalleryItem extends Component {
   state = {
-    pictures: []
+    pictures: [],
+    loading: false,
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -12,9 +14,11 @@ export default class ImageGalleryItem extends Component {
     if (prevName !== nextName) {
       console.log('Змінилось імя', nextName);
 
-      this.setState({ loading: true });
-      fetch(`https://pixabay.com/api/?key=25738191-2a68a887d2690264ace752ae1&q=${nextName}&image_type=photo&orientation=horizontal&safesearch=true&per_page=12&page=1`)
-        .then(res => res.json())
+      this.setState({ loading: true, pictures: [] });
+      axios.get(`https://pixabay.com/api/?key=25738191-2a68a887d2690264ace752ae1&q=${nextName}&image_type=photo&orientation=horizontal&safesearch=true&per_page=12&page=1`)
+        .then(res => {
+          return res.data.hits;
+        })
         .then(pictures => this.setState({ pictures }))
         .finally(() => this.setState({ loading: false }));
       
@@ -22,8 +26,8 @@ export default class ImageGalleryItem extends Component {
   }
 
   render() {
-    const { pictures, loading } = this.state
-    const { id, webformatURL } = pictures
+    const { pictures, loading} = this.state
+    return pictures.map(({ id, webformatURL }) => {
       return (
         <div>
           {loading && <div>Loading...</div>}
@@ -36,6 +40,6 @@ export default class ImageGalleryItem extends Component {
           }
         </div>
       )
-
+    })
   }
 }

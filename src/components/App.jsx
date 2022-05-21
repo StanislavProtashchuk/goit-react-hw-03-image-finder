@@ -17,19 +17,12 @@ export default class App extends Component {
 
   render() {
 
-    // const { cats } = this.state;
-
     return (
       <div>
         <Searchbar onSubmit={this.handleFormSubmit} />
         <ToastContainer autoClose={3000} />
         <ImageGalleryItem name={this.state.name}/>
-        {/* {this.state.loading && <h1>Loading</h1>}
-        {(
-          <ul>
-            <li></li>
-          </ul>
-        )} */}
+
       </div>
     );
   };
