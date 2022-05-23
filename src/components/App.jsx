@@ -1,7 +1,8 @@
 import { Component } from "react";
 import { ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.min.css';
-import ImageGalleryItem from "./ImageGalleryItem/ImageGalleryItem";
+import API from "../services/API"
+// import ImageGalleryItem from "./ImageGalleryItem/ImageGalleryItem";
 import Searchbar from "./Searchbar/Searchbar";
 
 export default class App extends Component {
@@ -21,7 +22,7 @@ export default class App extends Component {
       <div>
         <Searchbar onSubmit={this.handleFormSubmit} />
         <ToastContainer autoClose={3000} />
-        <ImageGalleryItem name={this.state.name}/>
+        <API name={this.state.name}/>
 
       </div>
     );
