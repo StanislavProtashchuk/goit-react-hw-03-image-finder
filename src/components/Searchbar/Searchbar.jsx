@@ -1,46 +1,42 @@
 import { Component } from 'react';
 import { toast } from 'react-toastify';
 
-export default class Searchbar extends Component{
-    state = {
-        name: '',
-    };
+export default class Searchbar extends Component {
+  state = {
+    query: '',
+  };
 
-    handleNameChange = e => {
-        this.setState({ name: e.currentTarget.value.toLowerCase() });
-    };
+  handleQueryChange = e => {
+    this.setState({ query: e.currentTarget.value.toLowerCase() });
+  };
 
-    handleSubmit = e => {
-        e.preventDefault();
+  handleSubmit = e => {
+    e.preventDefault();
+    if (this.state.query.trim() === '') {
+      return toast.error('Введіть назву картинки');
+    }
+    this.props.onSubmit(this.state.query);
+    this.setState({ query: '' });
+  };
 
-        if (this.state.name.trim() === '') {
-            return toast.error('Enter picture name!');
-            // return;
-        }
-        this.props.onSubmit(this.state.name);
-        this.setState({ name: '' });
-    };
+  render() {
+    return (
+      <header>
+        <form onSubmit={this.handleSubmit}>
+          <button type="submit">
+            <span></span>
+          </button>
 
-
-render(){
-    return(
-        <header class= "searchbar" >
-        <form class="form" onSubmit={this.handleSubmit}>
-            <button type="submit" class="button">
-                <span class="button-label">Search</span>
-                </button>
-                
-                <input
-                    class="input"
-                    type="text"
-                    autocomplete="off"
-                    autofocus
-                    placeholder="Search images and photos"
-                    value={this.state.name}
-                    onChange={this.handleNameChange}
-            />
+          <input
+            type="text"
+            autoComplete="off"
+            autoFocus
+            value={this.state.query}
+            placeholder="Search images and photos"
+            onChange={this.handleQueryChange}
+          />
         </form>
-        </header>
-            )
-        };};
-
+      </header>
+    );
+  }
+}

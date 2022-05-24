@@ -1,11 +1,15 @@
-//
 
-export default function ImageGalleryItem({ pictures }) {
-return pictures.hits.map(({ id, webformatURL }) => {
-        return <ul>
-          <li id={id} class="gallery-item">
-            <img src={webformatURL} alt="" />
-          </li>
-        </ul >
-      })
+
+export default function ImageGalleryItem({ pictures, showModal }) {
+  return pictures.map(({ id, webformatURL, tags, largeImageURL }) => {
+    return (
+      <li key={id}>
+        <img
+          src={webformatURL}
+          alt={tags}
+          onClick={() => showModal(largeImageURL)}
+        />
+      </li>
+    );
+  });
 }
