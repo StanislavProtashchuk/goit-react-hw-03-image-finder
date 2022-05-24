@@ -25,7 +25,7 @@ export default class App extends Component {
       API(query, page).then(pictures => {
         this.setState({ loader: false });
         if (pictures.length === 0) {
-          return toast.error('Нічого немає');
+          return toast.error(`No pictures with name: "${query}". Please enter correct name and try again!`);
         }
 
         this.setState(prevState => ({
@@ -64,7 +64,7 @@ export default class App extends Component {
         {loader && <Loader />}
         <ImageGallery pictures={pictures}></ImageGallery>
         {loadMore && <Button onClickButton={this.onClickButton} />}
-        <ToastContainer autoClose={2000} position="top-center" />
+        <ToastContainer autoClose={3000}/>
       </div>
     );
   }

@@ -13,7 +13,7 @@ export default class Searchbar extends Component {
   handleSubmit = e => {
     e.preventDefault();
     if (this.state.query.trim() === '') {
-      return toast.error('Введіть назву картинки');
+      return toast.error('Please enter picture name');
     }
     this.props.onSubmit(this.state.query);
     this.setState({ query: '' });
