@@ -1,6 +1,7 @@
-import ImageGalleryItem from 'components/ImageGalleryItem/ImageGalleryItem';
+import ImageGalleryItem from 'components/ImageGalleryItem';
 import { Component } from 'react';
-import Modal from '../Modal/Modal';
+import s from './ImageGallery.module.css'
+import Modal from '../Modal';
 
 export default class ImageGallery extends Component {
   state = {
@@ -33,7 +34,7 @@ export default class ImageGallery extends Component {
 
   render() {
     return (
-      <ul>
+      <ul className={s.ImageGallery}>
         <ImageGalleryItem
           pictures={this.props.pictures}
           showModal={this.handleModal}

@@ -1,5 +1,6 @@
 import { Component } from 'react';
 import { toast } from 'react-toastify';
+import s from './Searchbar.module.css'
 
 export default class Searchbar extends Component {
   state = {
@@ -21,13 +22,14 @@ export default class Searchbar extends Component {
 
   render() {
     return (
-      <header>
-        <form onSubmit={this.handleSubmit}>
-          <button type="submit">
-            <span></span>
+      <header className={s.Searchbar}>
+        <form className={s.SearchForm} onSubmit={this.handleSubmit}>
+          <button className={s.SearchFormButton} type="submit">
+            <span className={s.SearchFormButtonLabel}></span>
           </button>
 
           <input
+            className={s.SearchFormInput}
             type="text"
             autoComplete="off"
             autoFocus

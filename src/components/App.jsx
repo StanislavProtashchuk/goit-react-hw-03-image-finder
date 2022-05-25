@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.min.css';
-import Searchbar from './Searchbar/Searchbar';
+import Searchbar from './Searchbar';
 import { Loader } from './Loader/Loader';
 import API from 'services/API';
 import { toast } from 'react-toastify';
-import ImageGallery from './ImageGallery/ImageGallery';
-import Button from './Button/Button';
+import ImageGallery from './ImageGallery';
+import Button from './Button';
+import s from './App.module.css';
 
 export default class App extends Component {
   state = {
@@ -59,7 +60,7 @@ export default class App extends Component {
   render() {
     const { loader, pictures, loadMore } = this.state;
     return (
-      <div>
+      <div className={s.App}>
         <Searchbar onSubmit={this.handlFormSubmit} />
         {loader && <Loader />}
         <ImageGallery pictures={pictures}></ImageGallery>
